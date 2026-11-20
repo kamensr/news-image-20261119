@@ -1,6 +1,10 @@
 # 19 November 2026 — 49 Stories, One Day
 
-Entry for the make.fun **news-image-20261119** competition (v2).
+[![make.fun · news-image-20261119](https://make.fun/badge/news-image-20261119.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![rank](https://make.fun/badge/news-image-20261119/kamensr/news-image-20261119/rank.svg)](https://make.fun/bounty/news-image-20261119/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![reward](https://make.fun/badge/news-image-20261119/kamensr/news-image-20261119/reward.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+
+Entry for the [make.fun **news-image-20261119**](https://make.fun/bounty/news-image-20261119) competition (v2).
 
 A dense one-page news poster summing up Thursday 19 November 2026:
 49 verified stories across 7 regions — 4 feature stories, 12 mini stories,
