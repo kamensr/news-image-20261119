@@ -1,36 +1,37 @@
 #!/usr/bin/env python3
-"""news-image-20261119: write the poster to /output/entry.png.
+"""Hand the finished poster over to the grader.
 
-The entry is the poster itself (entry.png, drawn with PIL at build time).
-This program just copies it to the output directory, deterministically.
-Standard library only; no network.
+The poster itself is drawn elsewhere and already sits in this repo as
+entry.png. All this script does is place an exact copy of it where the
+grading harness expects to find it. Nothing is drawn, decoded or
+re-encoded here, so the output bytes are always identical to the input.
 """
 
 import os
 import shutil
-import sys
+from pathlib import Path
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-SOURCE = os.path.join(HERE, "entry.png")
+POSTER_NAME = "entry.png"
+FALLBACK_DIR = "/output"
 
 
-def main() -> int:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    target = os.path.join(out_dir, "entry.png")
-    if not os.path.isfile(SOURCE):
-        print(f"missing image: {SOURCE}", file=sys.stderr)
-        return 1
-    os.makedirs(out_dir, exist_ok=True)
-    shutil.copyfile(SOURCE, target)
-    # Verify the copy: same size as the source, within the 1 MiB gate.
-    if os.path.getsize(target) != os.path.getsize(SOURCE):
-        print("copy size mismatch", file=sys.stderr)
-        return 1
-    if os.path.getsize(target) > 1048576:
-        print("image exceeds 1 MiB", file=sys.stderr)
-        return 1
-    return 0
+def poster_path():
+    """Locate entry.png next to this script, whatever the cwd is."""
+    return Path(__file__).resolve().parent / POSTER_NAME
+
+
+def output_dir():
+    """Pick the destination folder from the environment, with fallback."""
+    chosen = os.environ.get("MAKEFUN_OUTPUT_DIR")
+    return Path(chosen) if chosen else Path(FALLBACK_DIR)
+
+
+def main():
+    source = poster_path()
+    target_folder = output_dir()
+    target_folder.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, target_folder / POSTER_NAME)
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
